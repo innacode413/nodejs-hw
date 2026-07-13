@@ -1,5 +1,9 @@
-const { addTask, getTasks, completeTask, deleteTask } = require('./modules/taskService');
+const { initStorage, readTasks } = require('./modules/fileStorage');
+const { loadTasks, addTask, getTasks, completeTask, deleteTask } = require('./modules/taskService');
 const { formatTasks } = require('./modules/taskFormatter');
+
+initStorage();
+loadTasks();
 
 const t1 = addTask('Learn Node.js modules');
 console.log('Додано:', t1.title);
@@ -20,3 +24,7 @@ console.log(formatTasks(getTasks()));
 deleteTask(1);
 console.log('\n--- Після видалення задачі #1 ---');
 console.log(formatTasks(getTasks()));
+
+console.log('\n--- Перечитування з файлу ---');
+const fromFile = readTasks();
+console.log(formatTasks(fromFile));
