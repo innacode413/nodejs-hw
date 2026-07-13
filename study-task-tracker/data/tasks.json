@@ -1,14 +1,16 @@
 [
   {
     "id": 2,
-    "title": "Practice fs module",
+    "title": "Practice crypto module",
     "completed": true,
-    "createdAt": "2026-07-13T08:44:01.931Z"
+    "createdAt": "2026-07-13T08:45:01.710Z",
+    "hash": "8e109d2b4f83fb7fe516d17aafc38caa705e21cf9caef0fea9a97d0c47750eee"
   },
   {
     "id": 3,
-    "title": "Build a CLI tool",
+    "title": "Build a logger",
     "completed": false,
-    "createdAt": "2026-07-13T08:44:01.931Z"
+    "createdAt": "2026-07-13T08:45:01.711Z",
+    "hash": "e0e6665fc9657597ffb89c46087c8d535f35cd441eb921958e0709ed5e515fed"
   }
 ]
