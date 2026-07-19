@@ -1,6 +1,15 @@
 const express = require('express');
 const app = express();
 
+app.use((req, res, next) => {
+  const time = new Date().toLocaleString('uk-UA');
+  console.log(`${req.method} ${req.url} — ${time}`);
+  next();
+});
+
+app.use(express.json());
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
   res.send('Головна сторінка. Код 200 — успіх.');
 });
@@ -34,8 +43,25 @@ app.get('/user/:id/orders', (req, res) => {
   res.send('Замовлення користувача ' + req.params.id + ' зі статусом: ' + status);
 });
 
+app.post('/feedback', (req, res) => {
+  const { name, message } = req.body;
+  if (!name) {
+    return res.status(400).send('Поле name є обов\'язковим');
+  }
+  res.send(`Дякуємо, ${name}! Ваш відгук отримано.`);
+});
+
+app.get('/crash', (req, res) => {
+  throw new Error('Тестова помилка');
+});
+
 app.use((req, res) => {
   res.status(404).send('Сторінку не знайдено. Код 404.');
+});
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Щось пішло не так!');
 });
 
 app.listen(3000, () => {
