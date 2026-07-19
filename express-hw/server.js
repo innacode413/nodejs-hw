@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+app.set('view engine', 'ejs');
+
 app.use((req, res, next) => {
   const time = new Date().toLocaleString('uk-UA');
   console.log(`${req.method} ${req.url} — ${time}`);
@@ -55,8 +57,26 @@ app.get('/crash', (req, res) => {
   throw new Error('Тестова помилка');
 });
 
+app.get('/profile', (req, res) => {
+  res.render('profile', {
+    name: 'Інна',
+    role: 'Студент курсу Node.js',
+    hobbies: ['читання', 'подорожі', 'програмування', 'кава'],
+    isOnline: true
+  });
+});
+
+app.get('/students', (req, res) => {
+  const students = [
+    { name: 'Оля', level: 'junior' },
+    { name: 'Максим', level: 'middle' },
+    { name: 'Ірина', level: 'senior' }
+  ];
+  res.render('students', { students });
+});
+
 app.use((req, res) => {
-  res.status(404).send('Сторінку не знайдено. Код 404.');
+  res.status(404).render('not-found', { url: req.url });
 });
 
 app.use((err, req, res, next) => {

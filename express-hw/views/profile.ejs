@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Профіль</title>
+</head>
+<body>
+  <h1><%= name %></h1>
+  <p><%= role %></p>
+  <p>Статус: <%= isOnline ? 'Онлайн' : 'Офлайн' %></p>
+  <h2>Хобі</h2>
+  <ul>
+    <% hobbies.forEach(function(hobby) { %>
+      <li><%= hobby %></li>
+    <% }) %>
+  </ul>
+</body>
+</html>
