@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Фільтр заборонених слів</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; }
+    label { display: block; margin-bottom: 8px; font-weight: bold; }
+    input, textarea { width: 100%; box-sizing: border-box; padding: 8px; margin-bottom: 16px; }
+    .output { border: 1px solid #ccc; padding: 12px; min-height: 40px; }
+    del { background: #ffe0e0; }
+  </style>
+</head>
+<body>
+  <h1>Фільтр заборонених слів</h1>
+
+  <label for="text">Текст:</label>
+  <textarea id="text" rows="4">This is a test sentence with some bad words.</textarea>
+
+  <label for="words">Заборонені слова (через кому):</label>
+  <input id="words" type="text" value="bad, test">
+
+  <button id="apply">Показати результат</button>
+
+  <h2>Результат:</h2>
+  <div id="output" class="output"></div>
+
+  <script>
+    function highlightForbiddenWords(text, forbiddenWords) {
+      let result = text;
+      for (const word of forbiddenWords) {
+        if (word) {
+          result = result.split(word).join('<del>' + word + '</del>');
+        }
+      }
+      return result;
+    }
+
+    const textInput = document.getElementById('text');
+    const wordsInput = document.getElementById('words');
+    const output = document.getElementById('output');
+    const button = document.getElementById('apply');
+
+    button.onclick = () => {
+      const forbiddenWords = wordsInput.value.split(',').map(w => w.trim()).filter(Boolean);
+      output.innerHTML = highlightForbiddenWords(textInput.value, forbiddenWords);
+    };
+  </script>
+</body>
+</html>
