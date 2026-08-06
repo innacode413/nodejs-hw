@@ -1,0 +1,14 @@
+{
+  "name": "notification-service",
+  "version": "1.0.0",
+  "description": "Сервіс сповіщень на чистому TypeScript",
+  "main": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
